@@ -51,6 +51,13 @@ dependencies {
 
 	implementation "thedarkcolour:kotlinforforge:4.10.0"
 
+	implementation fg.deobf("foundry.veil:Veil-forge-${minecraft_version}:${veil_version}") {
+		transitive = false
+	}
+	jarJar ("foundry.veil:Veil-forge-${minecraft_version}:${veil_version}") {
+		jarJar.ranged(it, "[${veil_version},)")
+	}
+
 	modCompileOnly "org.valkyrienskies.core:api:${vs_core_version}"
 	modCompileOnly "org.valkyrienskies:valkyrienskies-120-forge:${vs2_version}"
 	modRuntimeOnly "org.valkyrienskies.core:api:${vs_core_version}"
