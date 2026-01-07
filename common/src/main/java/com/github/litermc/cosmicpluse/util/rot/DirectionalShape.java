@@ -27,32 +27,36 @@ public class DirectionalShape {
 	}
 
 	public VoxelShape get(Direction direction) {
-		switch (direction) {
-			case NORTH: return north;
-			case EAST: return east;
-			case SOUTH: return south;
-			case WEST: return west;
-			case UP: return up;
-			case DOWN: return down;
-			default: throw new IllegalArgumentException();
+		return switch (direction) {
+			case NORTH -> this.north;
+			case EAST -> this.east;
+			case SOUTH -> this.south;
+			case WEST -> this.west;
+			case UP -> this.up;
+			case DOWN -> this.down;
 		}
 	}
 
 	public static DirectionalShape north(RotShape shape) {
 		return new DirectionalShape(shape);
 	}
+
 	public static DirectionalShape east(RotShape shape) {
 		return new DirectionalShape(shape.rotate270());
 	}
+
 	public static DirectionalShape south(RotShape shape) {
 		return new DirectionalShape(shape.rotate180());
 	}
+
 	public static DirectionalShape west(RotShape shape) {
 		return new DirectionalShape(shape.rotate90());
 	}
+
 	public static DirectionalShape up(RotShape shape) {
 		return new DirectionalShape(shape.xrotate270());
 	}
+
 	public static DirectionalShape down(RotShape shape) {
 		return new DirectionalShape(shape.xrotate90());
 	}
