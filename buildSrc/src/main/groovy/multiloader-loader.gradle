@@ -3,20 +3,16 @@ plugins {
 }
 
 configurations {
-	commonJava{
+	commonJava {
 		canBeResolved = true
 	}
-	commonResources{
+	commonResources {
 		canBeResolved = true
 	}
 }
 
 dependencies {
-	compileOnly(project(':common')) {
-		capabilities {
-			requireCapability "$group:$mod_id"
-		}
-	}
+	compileOnly project(':common')
 	commonJava project(path: ':common', configuration: 'commonJava')
 	commonResources project(path: ':common', configuration: 'commonResources')
 }
@@ -29,6 +25,22 @@ tasks.named('compileJava', JavaCompile) {
 processResources {
 	dependsOn(configurations.commonResources)
 	from(configurations.commonResources)
+}
+
+tasks.named('build') {
+	finalizedBy('outputRemapJar')
+}
+
+tasks.register('outputRemapJar') {
+	dependsOn tasks.named('remapJar')
+	doLast {
+		def jarFile = tasks.named('remapJar').get().archiveFile.get().asFile
+		def targetDir = file("${rootDir}/mod-output/")
+		copy {
+			from jarFile
+			into targetDir
+		}
+	}
 }
 
 tasks.named('javadoc', Javadoc).configure {

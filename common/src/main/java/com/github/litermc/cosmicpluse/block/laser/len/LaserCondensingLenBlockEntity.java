@@ -13,18 +13,18 @@ import org.joml.Vector3d;
 import org.valkyrienskies.core.api.ships.Ship;
 import org.valkyrienskies.mod.common.VSGameUtilsKt;
 
+import com.github.litermc.cosmicpluse.CosmicPluseRegistry;
 import com.github.litermc.cosmicpluse.api.laser.ILaserAttachment;
 import com.github.litermc.cosmicpluse.api.laser.LaserContext;
 import com.github.litermc.cosmicpluse.api.laser.LaserEmitter;
 import com.github.litermc.cosmicpluse.api.laser.LaserProperties;
 import com.github.litermc.cosmicpluse.api.laser.LaserUtil;
-import com.github.litermc.cosmicpluse.block.VSCHBlockEntities;
 
 public class LaserCondensingLenBlockEntity extends AbstractDirectionalLaserLenBlockEntity {
 	private LaserContext merging = null;
 
 	public LaserCondensingLenBlockEntity(BlockPos pos, BlockState state) {
-		super(VSCHBlockEntities.LASER_CONDENSING_LEN_BLOCK_ENTITY.get(), pos, state);
+		super(CosmicPluseRegistry.BlockEntities.LASER_CONDENSING_LEN_BLOCK_ENTITY.get(), pos, state);
 	}
 
 	@Override

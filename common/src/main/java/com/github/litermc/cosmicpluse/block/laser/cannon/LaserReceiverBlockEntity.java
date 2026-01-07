@@ -12,12 +12,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.LazyOptional;
 
+import com.github.litermc.cosmicpluse.CosmicPluseRegistry;
 import com.github.litermc.cosmicpluse.api.laser.ILaserProcessor;
 import com.github.litermc.cosmicpluse.api.laser.LaserContext;
 import com.github.litermc.cosmicpluse.api.laser.LaserEmitter;
 import com.github.litermc.cosmicpluse.api.laser.LaserProperties;
 import com.github.litermc.cosmicpluse.api.laser.LaserUtil;
-import com.github.litermc.cosmicpluse.block.VSCHBlockEntities;
 import com.github.litermc.cosmicpluse.block.template.AbstractCannonBlockEntity;
 import com.github.litermc.cosmicpluse.block.template.IColoredBlockEntity;
 import net.jcm.vsch.compat.cc.peripherals.laser.LaserReceiverPeripheral;
@@ -37,7 +37,7 @@ public class LaserReceiverBlockEntity extends AbstractLaserCannonBlockEntity imp
 	private LaserEmitterBlockEntity emitterBlock = null;
 
 	public LaserReceiverBlockEntity(BlockPos pos, BlockState state) {
-		super(VSCHBlockEntities.LASER_RECEIVER_BLOCK_ENTITY.get(), pos, state);
+		super(CosmicPluseRegistry.BlockEntities.LASER_RECEIVER_BLOCK_ENTITY.get(), pos, state);
 		this.r = 256;
 		this.g = 0;
 		this.b = 0;

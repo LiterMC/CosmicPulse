@@ -2,6 +2,7 @@ package com.github.litermc.cosmicpluse.api.laser;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -10,8 +11,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 import com.github.litermc.cosmicpluse.entity.LaserEntity;
-import com.github.litermc.cosmicpluse.network.VSCHNetwork;
-import com.github.litermc.cosmicpluse.network.s2c.LaserContextPacketS2C;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +26,7 @@ public final class LaserUtil {
 
 	private LaserUtil() {}
 
-	public static void afterServerTick() {
+	public static void postServerTick() {
 		for (int remain = LASER_QUEUE.size(); remain > 0; remain--) {
 			final LaserContext laser = LASER_QUEUE.remove();
 			processLaser(laser);

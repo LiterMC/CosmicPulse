@@ -1,22 +1,43 @@
 plugins {
 	id 'multiloader-common'
-	id 'net.neoforged.moddev.legacyforge'
 }
 
-legacyForge {
-	mcpVersion = minecraft_version
-	if (file("src/main/resources/META-INF/accesstransformer.cfg").exists()) {
-		accessTransformers = ["src/main/resources/META-INF/accesstransformer.cfg"]
-	}
-	parchment {
-		minecraftVersion = parchment_minecraft
-		mappingsVersion = parchment_version
-	}
+architectury {
+	common('fabric', 'forge')
+}
+
+loom {
+	accessWidenerPath = file("src/main/resources/${mod_id}.accesswidener")
 }
 
 dependencies {
+	api "org.jetbrains.kotlin:kotlin-reflect:1.9.10"
+	api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10"
+	// We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
+	// Do NOT use other classes from fabric loader
+	modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+
+	modImplementation("foundry.veil:Veil-common-${minecraft_version}:${veil_version}") {
+		transitive = false
+	}
+
 	compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
+	compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0")
 	implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
+
+	implementation "com.google.auto.service:auto-service:1.1.1"
+	annotationProcessor "com.google.auto.service:auto-service:1.1.1"
+
+	modApi "org.valkyrienskies:valkyrienskies-120-common:${vs2_version}"
+
+	implementation "org.valkyrienskies.core:api:${vs_core_version}"
+	implementation "org.valkyrienskies.core:impl:${vs_core_version}"
+	implementation "org.valkyrienskies.core:internal:${vs_core_version}"
+	implementation "org.valkyrienskies.core:util:${vs_core_version}"
+
+	compileOnly "cc.tweaked:cc-tweaked-${minecraft_version}-common:${cct_version}"
+
+	modCompileOnly "com.simibubi.create:create-fabric:${create_fabric_version}"
 }
 
 configurations {

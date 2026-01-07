@@ -16,17 +16,17 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.LazyOptional;
 
+import com.github.litermc.cosmicpluse.CosmicPluseRegistry;
 import com.github.litermc.cosmicpluse.api.laser.ILaserAttachment;
 import com.github.litermc.cosmicpluse.api.laser.ILaserProcessor;
 import com.github.litermc.cosmicpluse.api.laser.LaserContext;
 import com.github.litermc.cosmicpluse.api.laser.LaserEmitter;
 import com.github.litermc.cosmicpluse.api.laser.LaserProperties;
 import com.github.litermc.cosmicpluse.api.laser.LaserUtil;
-import com.github.litermc.cosmicpluse.block.VSCHBlockEntities;
 
 public class LaserExplosiveProcessorBlockEntity extends AbstractLaserCannonBlockEntity {
 	public LaserExplosiveProcessorBlockEntity(final BlockPos pos, final BlockState state) {
-		super(VSCHBlockEntities.LASER_EXPLOSIVE_PROCESSOR_BLOCK_ENTITY.get(), pos, state);
+		super(CosmicPluseRegistry.BlockEntities.LASER_EXPLOSIVE_PROCESSOR_BLOCK_ENTITY.get(), pos, state);
 	}
 
 	@Override

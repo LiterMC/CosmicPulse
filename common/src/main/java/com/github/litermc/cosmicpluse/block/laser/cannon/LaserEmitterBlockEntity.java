@@ -9,11 +9,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.LazyOptional;
 
+import com.github.litermc.cosmicpluse.CosmicPluseRegistry;
 import com.github.litermc.cosmicpluse.api.laser.LaserContext;
 import com.github.litermc.cosmicpluse.api.laser.LaserEmitter;
 import com.github.litermc.cosmicpluse.api.laser.LaserProperties;
 import com.github.litermc.cosmicpluse.api.laser.LaserUtil;
-import com.github.litermc.cosmicpluse.block.VSCHBlockEntities;
 import com.github.litermc.cosmicpluse.block.template.IAnalogOutputBlockEntity;
 import com.github.litermc.cosmicpluse.block.template.IColoredBlockEntity;
 import net.jcm.vsch.compat.cc.peripherals.laser.LaserEmitterPeripheral;
@@ -26,7 +26,7 @@ public class LaserEmitterBlockEntity extends AbstractLaserCannonBlockEntity impl
 	int cooldown = 0;
 
 	public LaserEmitterBlockEntity(BlockPos pos, BlockState state) {
-		super(VSCHBlockEntities.LASER_EMITTER_BLOCK_ENTITY.get(), pos, state);
+		super(CosmicPluseRegistry.BlockEntities.LASER_EMITTER_BLOCK_ENTITY.get(), pos, state);
 		this.r = 256;
 		this.g = 0;
 		this.b = 0;

@@ -21,13 +21,13 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.LazyOptional;
 
+import com.github.litermc.cosmicpluse.CosmicPluseRegistry;
 import com.github.litermc.cosmicpluse.api.laser.ILaserAttachment;
 import com.github.litermc.cosmicpluse.api.laser.ILaserProcessor;
 import com.github.litermc.cosmicpluse.api.laser.LaserContext;
 import com.github.litermc.cosmicpluse.api.laser.LaserEmitter;
 import com.github.litermc.cosmicpluse.api.laser.LaserProperties;
 import com.github.litermc.cosmicpluse.api.laser.LaserUtil;
-import com.github.litermc.cosmicpluse.block.VSCHBlockEntities;
 import com.github.litermc.cosmicpluse.block.template.IAnalogOutputBlockEntity;
 import net.jcm.vsch.compat.cc.peripherals.laser.LaserDetectProcessorPeripheral;
 
@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
 
 public class LaserDetectProcessorBlockEntity extends AbstractLaserCannonBlockEntity implements IAnalogOutputBlockEntity {
 	public LaserDetectProcessorBlockEntity(BlockPos pos, BlockState state) {
-		super(VSCHBlockEntities.LASER_DETECT_PROCESSOR_BLOCK_ENTITY.get(), pos, state);
+		super(CosmicPluseRegistry.BlockEntities.LASER_DETECT_PROCESSOR_BLOCK_ENTITY.get(), pos, state);
 	}
 
 	private volatile double distance;

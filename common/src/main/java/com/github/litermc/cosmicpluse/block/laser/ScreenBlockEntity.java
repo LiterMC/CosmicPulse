@@ -16,11 +16,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
+import com.github.litermc.cosmicpluse.CosmicPluseRegistry;
 import com.github.litermc.cosmicpluse.api.laser.ILaserProcessor;
 import com.github.litermc.cosmicpluse.api.laser.LaserContext;
 import com.github.litermc.cosmicpluse.api.laser.LaserProperties;
 import com.github.litermc.cosmicpluse.block.laser.ScreenBlock;
-import com.github.litermc.cosmicpluse.block.VSCHBlockEntities;
 import com.github.litermc.cosmicpluse.block.template.ParticleBlockEntity;
 
 public class ScreenBlockEntity extends BlockEntity implements ILaserProcessor, ParticleBlockEntity {
@@ -28,7 +28,7 @@ public class ScreenBlockEntity extends BlockEntity implements ILaserProcessor, P
 	private int lightUpdate = 0;
 
 	public ScreenBlockEntity(BlockPos pPos, BlockState pBlockState) {
-		super(VSCHBlockEntities.SCREEN_BLOCK_ENTITY.get(), pPos, pBlockState);
+		super(CosmicPluseRegistry.BlockEntities.SCREEN_BLOCK_ENTITY.get(), pPos, pBlockState);
 	}
 
 	public Vec3 getColor() {

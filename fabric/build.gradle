@@ -1,31 +1,57 @@
 plugins {
 	id 'multiloader-loader'
-	id 'fabric-loom'
+	// id 'fabric-loom'
+	id 'com.github.johnrengelman.shadow' version '7.1.2'
 	id 'com.modrinth.minotaur' version '2.+'
 }
+
+architectury {
+	fabric()
+}
+
+configurations {
+	common
+	shadowCommon
+	compileClasspath.extendsFrom common
+	runtimeClasspath.extendsFrom common
+	developmentFabric.extendsFrom common
+}
+
 dependencies {
-	minecraft "com.mojang:minecraft:${minecraft_version}"
-	mappings loom.layered {
-		officialMojangMappings()
-		parchment("org.parchmentmc.data:parchment-${parchment_minecraft}:${parchment_version}@zip")
-	}
+	api "org.jetbrains.kotlin:kotlin-reflect:1.9.10"
+	api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10"
 	modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+	include modApi("teamreborn:energy:3.0.0")
 	implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
 	implementation project(":common")
+	compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0")
+	implementation "com.google.auto.service:auto-service:1.1.1"
+	annotationProcessor "com.google.auto.service:auto-service:1.1.1"
 
-	modCompileOnly "org.valkyrienskies.core:api:${vs_core_version}"
-	modCompileOnly "org.valkyrienskies:valkyrienskies-120-fabric:${vs2_version}"
-	modRuntimeOnly "org.valkyrienskies.core:api:${vs_core_version}"
-	modRuntimeOnly "org.valkyrienskies:valkyrienskies-120-fabric:${vs2_version}"
+	include implementation("com.electronwill.night-config:core:3.8.1")
+	include implementation("com.electronwill.night-config:toml:3.8.1")
+
+	modRuntimeOnly "com.terraformersmc:modmenu:3.2.3"
+	modRuntimeOnly "me.shedaniel.cloth:cloth-config:${cloth_config_version}"
+
+	modApi("org.valkyrienskies:valkyrienskies-120-fabric:${vs2_version}") { transitive = false }
+	implementation "org.valkyrienskies.core:api:${vs_core_version}"
+	implementation "org.valkyrienskies.core:impl:${vs_core_version}"
+	implementation "org.valkyrienskies.core:internal:${vs_core_version}"
+	implementation "org.valkyrienskies.core:util:${vs_core_version}"
 
 	modCompileOnly "maven.modrinth:jade:${jade_version}+fabric"
 	modRuntimeOnly "maven.modrinth:jade:${jade_version}+fabric"
+
+	modCompileOnly "cc.tweaked:cc-tweaked-${minecraft_version}-fabric:${cct_version}"
+
+	modCompileOnly "com.simibubi.create:create-fabric:${create_fabric_version}"
+	modRuntimeOnly "com.simibubi.create:create-fabric:${create_fabric_version}"
 }
 
 loom {
-	if (project(":common").file("src/main/resources/${mod_id}.accesswidener").exists()) {
-		accessWidenerPath.set(project(":common").file("src/main/resources/${mod_id}.accesswidener"))
-	}
+	accessWidenerPath = project(":common").loom.accessWidenerPath
 	mixin {
 		defaultRefmapName.set("${mod_id}.refmap.json")
 	}
@@ -45,16 +71,21 @@ loom {
 	}
 }
 
+components.java {
+	withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+		skip()
+	}
+}
+
 modrinth {
 	token = System.getenv("MODRINTH_TOKEN")
-	projectId = "cosmicpluse"
+	projectId = "${modrinth_project_id}"
 	versionNumber = "${minecraft_version}-fabric-${version}"
 	versionType = "release"
-	uploadFile = remapJar
+	uploadFile = jar
 	gameVersions = ["1.20.1"]
 	loaders = ["fabric"]
 	dependencies {
-		// required.project "jade"
-		// required.project "valkyrien-skies"
+		required.project "valkyrien-skies"
 	}
 }

@@ -7,15 +7,15 @@ import net.minecraft.world.phys.Vec3;
 
 import org.joml.Vector3d;
 
+import com.github.litermc.cosmicpluse.CosmicPluseRegistry;
 import com.github.litermc.cosmicpluse.api.laser.LaserContext;
 import com.github.litermc.cosmicpluse.api.laser.LaserEmitter;
 import com.github.litermc.cosmicpluse.api.laser.LaserProperties;
 import com.github.litermc.cosmicpluse.api.laser.LaserUtil;
-import com.github.litermc.cosmicpluse.block.VSCHBlockEntities;
 
 public class LaserFlatMirrorBlockEntity extends AbstractDirectionalLaserLenBlockEntity {
 	public LaserFlatMirrorBlockEntity(BlockPos pos, BlockState state) {
-		super(VSCHBlockEntities.LASER_FLAT_MIRROR_BLOCK_ENTITY.get(), pos, state);
+		super(CosmicPluseRegistry.BlockEntities.LASER_FLAT_MIRROR_BLOCK_ENTITY.get(), pos, state);
 	}
 
 	@Override

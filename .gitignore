@@ -19,8 +19,10 @@ out
 
 # gradle
 build
+/mod-output
 .gradle
 
 # other
+.architectury-transformer
 eclipse
 run

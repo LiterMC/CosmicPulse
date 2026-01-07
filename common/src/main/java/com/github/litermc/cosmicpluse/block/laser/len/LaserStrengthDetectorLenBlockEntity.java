@@ -8,12 +8,12 @@ import net.minecraft.world.phys.Vec3;
 
 import org.joml.Vector3d;
 
+import com.github.litermc.cosmicpluse.CosmicPluseRegistry;
 import com.github.litermc.cosmicpluse.api.laser.ILaserProcessor;
 import com.github.litermc.cosmicpluse.api.laser.LaserContext;
 import com.github.litermc.cosmicpluse.api.laser.LaserEmitter;
 import com.github.litermc.cosmicpluse.api.laser.LaserProperties;
 import com.github.litermc.cosmicpluse.api.laser.LaserUtil;
-import com.github.litermc.cosmicpluse.block.VSCHBlockEntities;
 import com.github.litermc.cosmicpluse.block.template.IColoredBlockEntity;
 
 public class LaserStrengthDetectorLenBlockEntity extends AbstractDirectionalLaserLenBlockEntity implements IColoredBlockEntity, ILaserProcessor {
@@ -26,7 +26,7 @@ public class LaserStrengthDetectorLenBlockEntity extends AbstractDirectionalLase
 	private int analogOutput = 0;
 
 	public LaserStrengthDetectorLenBlockEntity(BlockPos pos, BlockState state) {
-		super(VSCHBlockEntities.LASER_STRENGTH_DETECTOR_LEN_BLOCK_ENTITY.get(), pos, state);
+		super(CosmicPluseRegistry.BlockEntities.LASER_STRENGTH_DETECTOR_LEN_BLOCK_ENTITY.get(), pos, state);
 	}
 
 	@Override
